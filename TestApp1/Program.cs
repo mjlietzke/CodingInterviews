@@ -11,8 +11,8 @@ namespace InterviewQuestions
 		static void Main(string[] args)
 		{
 			//ICodingProblem problem = new Chapter1Problem4();
-			//ICodingProblem problem = new Chapter2Problem1();
-			ICodingProblem problem = new Chapter2Problem4();
+			ICodingProblem problem = new Chapter2Problem1();
+			//ICodingProblem problem = new Chapter2Problem4();
 			problem.Run();
 
 		}

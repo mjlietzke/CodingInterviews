@@ -69,47 +69,19 @@ namespace InterviewQuestions
 			}
 		}
 
-		public void RemoveDuplicates(Node head) {
-			var values = new HashSet<int>();
-			Node previous = head;
-			values.Add(head.data);
-			Node cur = head.next;
+		
 
-			while (cur != null) {
-				//Console.Out.WriteLine("Data: cur.data" + cur.data);
-				if (values.Contains(cur.data)) {
-					previous.next = cur.next;
-				} else {
-					values.Add(cur.data);
-					//Console.Out.WriteLine(cur.data);
-					previous = cur;
-				}
-				cur = cur.next;
-			}
-
-		}
-
-		public void Run()
-		{
-			//Node myList = new Node(3);
-			//myList.appendToTail(5);
-			//myList.appendToTail(8);
-			//myList.appendToTail(5);
-			//myList.appendToTail(10);
-			//myList.appendToTail(2);
-			//myList.appendToTail(1);
-
-
-			Node myList = new Node(1);
+		public void Run() {
+			Node myList = new Node(3);
+			myList.appendToTail(5);
+			myList.appendToTail(8);
+			myList.appendToTail(5);
+			myList.appendToTail(10);
 			myList.appendToTail(2);
-			
-			myList.appendToTail(3);
-			myList.appendToTail(4);
-			myList.appendToTail(4);myList.appendToTail(3);
+			myList.appendToTail(1);
 			myList.Print();
 			Console.Out.WriteLine();
-			//Partition(myList, 5);
-			RemoveDuplicates(myList);
+			Partition(myList, 5);
 			myList.Print();
 			Console.Out.WriteLine();
 			Console.In.ReadLine();

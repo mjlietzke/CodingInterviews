@@ -32,33 +32,31 @@ namespace InterviewQuestions {
 		}
 		public void RemoveDuplicates(Node<int> head) {
 			var values = new HashSet<int>();
-			Node<int> behind = null;
-			Node<int> cur = head;			
-			
+			Node<int> previous = head;
+			values.Add(head.data);
+			Node<int> cur = head.next;
+
 			while (cur != null) {
 				//Console.Out.WriteLine("Data: cur.data" + cur.data);
-				if (values.Add(cur.data)) {
-					Console.Out.WriteLine(cur.data);
-					if (null == behind) {
-						behind = head;
-					} else {
-						behind.next = cur;
-					}
-					cur = cur.next;
+				if (values.Contains(cur.data)) {
+					previous.next = cur.next;
 				} else {
-					cur = cur.next;
+					values.Add(cur.data);
+					//Console.Out.WriteLine(cur.data);
+					previous = cur;
 				}
-				
+				cur = cur.next;
 			}
-			
+
 		}
 
 		public void Run() {
 			Node<int> myList = new Node<int>(1);
 			myList.appendToTail(2);
 			myList.appendToTail(3);
+			myList.appendToTail(4);
+			myList.appendToTail(4);
 			myList.appendToTail(3);
-			myList.appendToTail(4); myList.appendToTail(4);
 			myList.Print();
 			Console.Out.WriteLine();
 			RemoveDuplicates(myList);
