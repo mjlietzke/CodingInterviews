@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chapter1Problem2.cs" />
-    <Compile Include="Chapter2Problem1.cs" />
-    <Compile Include="Chapter2Problem4.cs" />
+    <Compile Include="Chapter1\Chapter1Problem2.cs" />
+    <Compile Include="Chapter2\Chapter2Problem1.cs" />
+    <Compile Include="Chapter2\Chapter2Problem4.cs" />
     <Compile Include="ICodingProblem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
