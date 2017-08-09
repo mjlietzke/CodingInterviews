@@ -49,6 +49,27 @@ namespace InterviewQuestions {
 			}
 
 		}
+		public void RemoveDuplicatesNoBuffer(Node<int> head) {
+			
+			Node<int> outer = head;
+			Node<int> runner = head.next;
+			Node<int> prev = head;
+
+			while ( outer != null) {
+				runner = outer;
+				while(null != runner) {
+					if(outer.data == runner.data) {
+						prev.next = runner.next;
+					}
+					prev = runner;
+					runner = runner.next;
+				}
+				//Console.Out.WriteLine("Data: cur.data" + cur.data);
+				prev = outer;
+				outer = outer.next;
+			}
+
+		}
 
 		public void Run() {
 			Node<int> myList = new Node<int>(1);
@@ -59,7 +80,8 @@ namespace InterviewQuestions {
 			myList.appendToTail(3);
 			myList.Print();
 			Console.Out.WriteLine();
-			RemoveDuplicates(myList);
+			//RemoveDuplicates(myList);
+			RemoveDuplicatesNoBuffer(myList);
 			myList.Print();
 			Console.Out.WriteLine();
 			Console.In.ReadLine();
