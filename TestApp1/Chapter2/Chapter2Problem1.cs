@@ -14,7 +14,7 @@ namespace InterviewQuestions {
 				data = newData;
 			}
 
-			public void appendToTail(T dataToAppend) {
+			public void AppendToTail(T dataToAppend) {
 				Node<T> node = this;
 				while (node.next != null) {
 					node = node.next;
@@ -73,11 +73,11 @@ namespace InterviewQuestions {
 
 		public void Run() {
 			Node<int> myList = new Node<int>(1);
-			myList.appendToTail(2);
-			myList.appendToTail(3);
-			myList.appendToTail(4);
-			myList.appendToTail(4);
-			myList.appendToTail(3);
+			myList.AppendToTail(2);
+			myList.AppendToTail(3);
+			myList.AppendToTail(4);
+			myList.AppendToTail(4);
+			myList.AppendToTail(3);
 			myList.Print();
 			Console.Out.WriteLine();
 			//RemoveDuplicates(myList);
