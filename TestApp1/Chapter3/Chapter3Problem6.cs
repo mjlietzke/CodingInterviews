@@ -8,17 +8,17 @@ namespace InterviewQuestions {
 	class Chapter3Problem6 : ICodingProblem {
 		public void Run() {
 			AnimalQueue shelter = new AnimalQueue();
-			Animal myDog1 = new Animal("Fido", AnimalType.Dog);
-			Animal myDog2 = new Animal("Kona", AnimalType.Dog);
-			Animal myCat1 = new Animal("Kitty1", AnimalType.Cat);
-			Animal myCat2 = new Animal("Kitty2", AnimalType.Cat);
-			shelter.EnqueuAnimal(myDog1);
-			shelter.EnqueuAnimal(myDog2);
-			shelter.EnqueuAnimal(myCat1);
-			shelter.EnqueuAnimal(myCat2);
+			Dog fido = new Dog("Fido");
+			Dog kona = new Dog("Kona");
+			Cat kitty = new Cat("Kitty");
+			Cat tigger = new Cat("Tigger");
+			shelter.EnqueuAnimal(fido);
+			shelter.EnqueuAnimal(kona);
+			shelter.EnqueuAnimal(kitty);
+			shelter.EnqueuAnimal(tigger);
 			shelter.Print();
 			Console.In.ReadLine();
-			Animal animal = shelter.DequeueCat();
+			Cat animal = shelter.DequeueCat();
 			Console.Out.WriteLine($"{animal.ToString()} was just adopted!");
 			animal = shelter.DequeueCat();
 			Console.Out.WriteLine($"{animal.ToString()} was just adopted!");
@@ -32,29 +32,31 @@ namespace InterviewQuestions {
 			Dog,
 			Cat
 		};
-		public interface Adoptable {
-			AnimalType GetAnimalType();
-			string GetName();
-		}
-		public class Animal : Adoptable {
-			public AnimalType Type { get; set; }
+		public class Adoptable {
+			public AnimalType AnimalType { get; set; }
 			public string Name { get; set; }
-			public Animal(string name, AnimalType type) {
+		}
+		public class Dog : Adoptable {
+			public Dog(string name) {
 				Name = name;
-				Type = type;
+				AnimalType = AnimalType.Dog;
+
 			}
+			
 			public override string ToString() {
-				return $"{Type}:{Name}";
+				return $"{AnimalType}:{Name}";
+			}
+		}
+		public class Cat : Adoptable {
+			public Cat(string name) {
+				Name = name;
+				AnimalType = AnimalType.Cat;
+
 			}
 
-			public AnimalType GetAnimalType() { 
-				return Type;
+			public override string ToString() {
+				return $"{AnimalType}:{Name}";
 			}
-
-			public string GetName() {
-				return Name;
-			}
-
 		}
 
 		public class Node<Adoptable> {
@@ -68,41 +70,41 @@ namespace InterviewQuestions {
 
 		
 
-		public class AnimalList<Adoptable> {
-			Node<Animal> head;
-			public void appendToTail(Animal dataToAppend) {
-				Node<Animal> node = this.head;
+		public class AnimalList {
+			Node<Adoptable> head;
+			public void appendToTail(Adoptable dataToAppend) {
+				Node<Adoptable> node = this.head;
 				if (node == null) {
-					node = new Node<Animal>(dataToAppend);
+					node = new Node<Adoptable>(dataToAppend);
 					head = node;
 				} else {
 					while (node.next != null) {
 						node = node.next;
 					}
-					var newNode = new Node<Animal>(dataToAppend);
+					var newNode = new Node<Adoptable>(dataToAppend);
 					node.next = newNode;
 				}
 			}
 			public void Print() {
-				Node<Animal> cur = this.head;
+				Node<Adoptable> cur = this.head;
 				while (cur != null) {
 					Console.Out.Write($"{cur.data}->");
 					cur = cur.next;
 				}
 			}
 
-			internal Animal RemoveFirst() {
+			internal Adoptable RemoveFirst() {
 				if (head == null) {
-					return default(Animal);
+					return default(Adoptable);
 				}
-				Node<Animal> headData = head;
+				Node<Adoptable> headData = head;
 				head = head.next;
 				return headData.data;
 			}
-			public Animal RemoveSpecificType(AnimalType typeToRemove) {
-				Node<Animal> adoptee = head;
-				Node<Animal> prev = null;
-				while(adoptee != null && adoptee.data.GetAnimalType() != typeToRemove) {
+			public Adoptable RemoveSpecificType(AnimalType typeToRemove) {
+				Node<Adoptable> adoptee = head;
+				Node<Adoptable> prev = null;
+				while(adoptee != null && adoptee.data.AnimalType != typeToRemove) {
 					prev = adoptee;
 					adoptee = adoptee.next;
 				}
@@ -119,22 +121,22 @@ namespace InterviewQuestions {
 		
 
 		public class AnimalQueue {
-			public AnimalList<Animal> animalList = new AnimalList<Animal>();
+			public AnimalList animalList = new AnimalList();
 
-			public void EnqueuAnimal(Animal animal) {
+			public void EnqueuAnimal(Adoptable animal) {
 				animalList.appendToTail(animal);
 			}
-			public Animal DequeueAnimal() {
+			public Adoptable DequeueAnimal() {
 				return animalList.RemoveFirst();
 			}
-			public Animal DequeueCat() {
-				return animalList.RemoveSpecificType(AnimalType.Cat);
+			public Cat DequeueCat() {
+				return (Cat)animalList.RemoveSpecificType(AnimalType.Cat);
 			}
 			public void Print() {
 				animalList.Print();
 			}
-			public Animal DequeueDog() {
-				return animalList.RemoveSpecificType(AnimalType.Dog);
+			public Dog DequeueDog() {
+				return (Dog)animalList.RemoveSpecificType(AnimalType.Dog);
 			}
 
 
