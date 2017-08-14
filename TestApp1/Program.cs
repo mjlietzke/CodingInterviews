@@ -1,5 +1,6 @@
 ﻿using InterviewQuestions.Chapter2;
 using InterviewQuestions.Chapter3;
+using InterviewQuestions.Chapter4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace InterviewQuestions
 			//ICodingProblem problem = new Chapter2Problem4();
 			//ICodingProblem problem = new Chapter2Problem6();
 			//ICodingProblem problem = new Chapter3Problem5();
-			ICodingProblem problem = new Chapter3Problem6();
+			ICodingProblem problem = new Chapter4Problem1();
 			problem.Run();
 
 		}
