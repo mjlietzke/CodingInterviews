@@ -49,6 +49,7 @@
     <Compile Include="Chapter3\Chapter3Problem5.cs" />
     <Compile Include="Chapter3\Chapter3Problem6.cs" />
     <Compile Include="Chapter4\Chapter4Problem1.cs" />
+    <Compile Include="Chapter8\Class1.cs" />
     <Compile Include="ICodingProblem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
